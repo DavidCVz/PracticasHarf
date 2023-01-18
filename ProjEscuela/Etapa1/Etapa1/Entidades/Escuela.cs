@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Etapa1.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         string nombre;
 
