@@ -30,6 +30,8 @@ namespace Etapa1.Entidades
 
         public List<Cursos> Cursos { get; set; }
 
+        public List<Evaluaciones> Evaluaciones { get; set; }
+
         //public Cursos[] cursos { get; set; }
 
         //public Escuela(string nombre, int AnioCreacion)

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Etapa1.Entidades;
 using Etapa1.Util;
+using System.Linq;
+using System.ComponentModel;
+using System.Xml;
 
 namespace Etapa1.App
 {
@@ -26,6 +29,88 @@ namespace Etapa1.App
             esc.tiposEscuela = TiposEscuela.Primaria;
             esc.tiposJornada = TiposJornada.Noche;
 
+            // Carga de Entidades
+            CargarCursos(esc);
+            imprimirCursosEscuela();
+            CargaAsignatuas(esc.Cursos);
+            CargarAlumnos(esc.Cursos);
+            CargaEvaluaciones();
+
+        }
+
+        private void CargaAsignatuas(List<Cursos> cursos)
+        {
+            var listaAsignaturas = new List<Asignaturas>()
+            {
+                new Asignaturas() { Nombre = "POO" },
+                new Asignaturas() { Nombre = "Estructura de Datos" },
+                new Asignaturas() { Nombre = "Fundamentos de Programacion" },
+                new Asignaturas() { Nombre = "Topicos Avanzados" },
+                new Asignaturas() { Nombre = "Programacion Logica y Funcional"},
+            };
+
+            foreach (var c in cursos)
+            {
+                c.Asignaturas = listaAsignaturas;
+            }
+        }
+
+        private void CargaEvaluaciones(Escuela esc)
+        {
+            var rnd = new Random();
+
+            foreach (var cur in esc.Cursos)
+            {
+                var listaEvaluaciones =
+                    from alumn in cur.Alumnos
+                    from asig in cur.Asignaturas
+                    select new Evaluaciones()
+                    {
+                        UniqueID = Guid.NewGuid().ToString(),
+                        Nombre = (rnd.Next() % 2 == 0) ? "Ordinario" : "Extraordinario",
+                        Alumno = alumn,
+                        Asignatura = asig,
+                        Nota = float.Parse(Convert.ToString(rnd.NextDouble()*5).Substring(0,4))
+                    };
+            }
+        }
+
+        private void CargarAlumnos(List<Cursos> cursos)
+        {
+            Util.Utilidades.DibujarLinea();
+            string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Farid" };
+            string[] apellido1 = { "Trump", "Toledo", "Herrera" };
+            string[] nombre2 = { "Diomedes", "Nicomedes", "Teodoro" };
+
+            var listaAlumnos = from n1 in nombre1
+                               from n2 in nombre2
+                               from a1 in apellido1
+                               select new Alumnos() { UniqueID = Guid.NewGuid().ToString(), Nombre = $"{n1} {n2} {a1}" };
+
+            //foreach (var a in listaAlumnos)
+            //{
+            //    //a.UniqueID = new Random().Next().ToString();
+            //    Console.WriteLine($"ID: {a.UniqueID} Nombre: {a.Nombre}");
+            //}
+
+            foreach (var c in cursos)
+            {
+                c.Alumnos = listaAlumnos.OrderBy((al) => al.UniqueID).Take(10).ToList();
+            }
+
+            Util.Utilidades.DibujarLinea();
+            foreach (var cur in cursos)
+            {
+                Console.WriteLine(cur.Nombre);
+                foreach (var al in cur.Alumnos)
+                {
+                    Console.WriteLine($"ID: {al.UniqueID} Nombre: {al.Nombre}");
+                }
+            }
+        }
+
+        public void CargarCursos(Escuela esc)
+        {
             // El objeto recibe una nueva lista de curso creada en su definicion
             esc.Cursos = (new List<Cursos>()
             {
@@ -34,9 +119,8 @@ namespace Etapa1.App
                     new Cursos(){Nombre = "301",},
                     new Cursos(){Nombre = "Prueba", Jornada = TiposJornada.Tarde},
             });
-
-            esc.Cursos.Add(new Cursos("Prueba", TiposJornada.Tarde));
-
+            
+            // Se inicializa el atributo de la clase
             Escuela = esc;
         }
 
@@ -72,6 +156,15 @@ namespace Etapa1.App
                 $"Ciudad: {Escuela.Ciudad} \n" +
                 $"Tipo de escuela: {Escuela.tiposEscuela}");
 
+        }
+
+        public void MostrarEvaluacionesCurso(List<Cursos> cursos)
+        {
+            foreach (var cur in cursos)
+            {
+                Utilidades.DibujarLinea(20);
+
+            }
         }
 
         /// <summary>
