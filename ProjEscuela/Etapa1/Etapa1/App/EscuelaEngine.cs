@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Etapa1.Entidades;
+using Etapa1.Util;
 
 namespace Etapa1.App
 {
@@ -54,7 +55,7 @@ namespace Etapa1.App
         public void imprimirCursosEscuela()
         {
             // Se imprimen los cursos de UNA escuela
-            Console.WriteLine("======================");
+            Utilidades.DibujarLinea();
             foreach (Cursos c in Escuela.Cursos)
             {
                 Console.WriteLine($"Nombre: {c.Nombre} ID: {c.UniqueID} Jornada:{c.Jornada}");
@@ -64,6 +65,7 @@ namespace Etapa1.App
         // Se imprimen LAS escuelas de una LISTA de escuelas
         public void imprimirEscuela()
         {
+            Utilidades.DibujarTitulo("DATOS DE LA ESCUELA");
             Console.WriteLine($"Nombre de escuela {Escuela.Nombre} \n" +
                 $"Año de creacion: {Escuela.AnioCreacion} \n" +
                 $"Pais: {Escuela.Pais} \n" +
