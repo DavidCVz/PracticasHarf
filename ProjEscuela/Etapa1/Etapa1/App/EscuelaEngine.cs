@@ -9,10 +9,9 @@ using System.Xml;
 
 namespace Etapa1.App
 {
-    public class EscuelaEngine
+    public class EscuelaEngine 
     {
         public Escuela Escuela { get; set; }
-
         public EscuelaEngine() 
         {
             
@@ -25,10 +24,12 @@ namespace Etapa1.App
 
             // Asignacion de valores a los atributos del objeto
             esc.Pais = "Mexico";
-            esc.Ciudad = "Coatzacoalcos";
+            esc.Ciudad = "Minatitlan";
             esc.tiposEscuela = TiposEscuela.Primaria;
             esc.tiposJornada = TiposJornada.Noche;
+            esc.Direccion = "Blv, Institutos Tec No, 509";
 
+            esc.MostrarDireccion();
             // Carga de Entidades
             CargarCursos(esc);
             imprimirCursosEscuela();
@@ -37,7 +38,7 @@ namespace Etapa1.App
             CargaEvaluaciones(esc);
 
         }
-
+        #region CARGA DE DATOS
         private void CargaAsignatuas(List<Cursos> cursos)
         {
             var listaAsignaturas = new List<Asignaturas>()
@@ -148,19 +149,9 @@ namespace Etapa1.App
             // Se inicializa el atributo de la clase
             Escuela = esc;
         }
+        #endregion CARGA DE DATOS
 
-        public void EliminarCurso()
-        {
-            Console.WriteLine("Ingrese el Nombre del curso");
-            //string idCurso = Console.ReadLine();
-            string nombreCurso = Console.ReadLine();
-            //EliminarCurso(idCurso, esc.Cursos);
-            //ElimiarCursoDelegate(idCurso, esc);
-            EliminarCursoLambda(nombreCurso);
-            imprimirCursosEscuela();
-        }
-
-
+        #region MOSTRAR DATOS
         public void imprimirCursosEscuela()
         {
             // Se imprimen los cursos de UNA escuela
@@ -191,6 +182,7 @@ namespace Etapa1.App
 
             }
         }
+        #endregion MOSTRAR DATOS
 
         /// <summary>
         /// FORMAS DE ELIMINAR ELEMENTOS DENTRO DE UNA COLECCION "LIST"
@@ -200,6 +192,16 @@ namespace Etapa1.App
         /// 
 
         // CICLOS
+        public void EliminarCurso()
+        {
+            Console.WriteLine("Ingrese el Nombre del curso");
+            //string idCurso = Console.ReadLine();
+            string nombreCurso = Console.ReadLine();
+            //EliminarCurso(idCurso, esc.Cursos);
+            //ElimiarCursoDelegate(idCurso, esc);
+            EliminarCursoLambda(nombreCurso);
+            imprimirCursosEscuela();
+        }
         private void EliminarCurso(string idCurso, List<Cursos> cursos)
         {
             //Recorrremos la lista de cursos en la escuela
@@ -238,5 +240,6 @@ namespace Etapa1.App
         {
             Escuela.Cursos.RemoveAll((cur) => (nombreCur == cur.Nombre && cur.Jornada == TiposJornada.Tarde));
         }
+
     }
 }

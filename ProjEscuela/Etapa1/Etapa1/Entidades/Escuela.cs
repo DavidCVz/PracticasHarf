@@ -5,9 +5,12 @@ using System.Text;
 
 namespace Etapa1.Entidades
 {
-    public class Escuela
+    public class Escuela : IDireccion
     {
         string nombre;
+
+        public string Direccion { get; set; }
+
 
         //Forma 1. Forma de acceder y modificar una propiedad de clase
         public string Nombre
@@ -42,7 +45,11 @@ namespace Etapa1.Entidades
 
         // METODO DE ASIGNACION CON TUPLAS
         // Argumentos | Atributos de clase | Asignacion de Argumentos
-        public Escuela(string nombre, int Anio) => (Nombre, AnioCreacion) = (Nombre, Anio); 
+        public Escuela(string nombre, int Anio) => (Nombre, AnioCreacion) = (Nombre, Anio);
 
+        public void MostrarDireccion()
+        {
+            Console.WriteLine($"Direccion de escuela: {Direccion}");
+        }
     }
 }

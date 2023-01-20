@@ -17,6 +17,14 @@ namespace Etapa1
             escuela.imprimirEscuela();
             escuela.imprimirCursosEscuela();
             escuela.EliminarCurso();
+
+            //var curso = new Cursos() { Nombre = "Curso 1"};
+            //var asig = new Asignaturas() { Nombre = "Asignatura 1"};
+            //var cBase = new Asignaturas();
+
+            //Console.WriteLine($"Curso: {curso.Nombre} ID: {curso.UniqueID}");
+            //Console.WriteLine($"Curso: {asig.Nombre} ID: {asig.UniqueID}");
         }
+
     }
 }
