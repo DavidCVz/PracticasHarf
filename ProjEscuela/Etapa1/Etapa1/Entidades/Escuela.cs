@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Etapa1.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         string nombre;
 
@@ -29,6 +29,8 @@ namespace Etapa1.Entidades
         public TiposJornada tiposJornada { get; set; }
 
         public List<Cursos> Cursos { get; set; }
+
+        public List<Evaluaciones> Evaluaciones { get; set; }
 
         //public Cursos[] cursos { get; set; }
 
