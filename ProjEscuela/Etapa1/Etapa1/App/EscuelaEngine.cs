@@ -86,7 +86,6 @@ namespace Etapa1.App
                         esc.Evaluaciones.AddRange(listaEvaluaciones);
 
                     }
-
                 }
             }
 

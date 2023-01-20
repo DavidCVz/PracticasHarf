@@ -4,14 +4,8 @@ using System.Text;
 
 namespace Etapa1.Entidades
 {
-    public class Alumnos
+    public class Alumnos : ObjetoEscuelaBase
     {
-        public string UniqueID { get; set; }
-        public string Nombre { get; set; }
-
-        public Alumnos() { string UniqueID = Guid.NewGuid().ToString(); }
-
        
-
     }
 }

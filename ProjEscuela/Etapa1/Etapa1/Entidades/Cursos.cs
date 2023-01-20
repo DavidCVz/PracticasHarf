@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Etapa1.Entidades
 {
-    public class Cursos
+    public class Cursos : ObjetoEscuelaBase
     {
-        public string UniqueID { get; private set; }
-        public string Nombre { get; set; }
 
         public TiposJornada Jornada { get; set; }
         public List<Alumnos> Alumnos { get; set; }
