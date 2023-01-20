@@ -11,6 +11,7 @@ namespace Etapa1.Entidades
         public Alumnos Alumno { get; set; }
         public Asignaturas Asignatura { get; set; }
         public float Nota { get; set; }
+        public Cursos Curso { get; set; }
 
         public Evaluaciones() { string UniqueID = Guid.NewGuid().ToString(); }
     }

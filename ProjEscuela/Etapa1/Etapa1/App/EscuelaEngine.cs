@@ -34,7 +34,7 @@ namespace Etapa1.App
             imprimirCursosEscuela();
             CargaAsignatuas(esc.Cursos);
             CargarAlumnos(esc.Cursos);
-            CargaEvaluaciones();
+            CargaEvaluaciones(esc);
 
         }
 
@@ -58,20 +58,46 @@ namespace Etapa1.App
         private void CargaEvaluaciones(Escuela esc)
         {
             var rnd = new Random();
+            int contador = 0;
 
             foreach (var cur in esc.Cursos)
             {
-                var listaEvaluaciones =
+                foreach (var asig in cur.Asignaturas)
+                {
+                    var listaEvaluaciones =
                     from alumn in cur.Alumnos
-                    from asig in cur.Asignaturas
+                    from a in cur.Asignaturas
                     select new Evaluaciones()
                     {
                         UniqueID = Guid.NewGuid().ToString(),
                         Nombre = (rnd.Next() % 2 == 0) ? "Ordinario" : "Extraordinario",
                         Alumno = alumn,
-                        Asignatura = asig,
-                        Nota = float.Parse(Convert.ToString(rnd.NextDouble()*5).Substring(0,4))
+                        Asignatura = a,
+                        Nota = float.Parse(Convert.ToString(rnd.NextDouble() * 5).Substring(0, 4)),
+                        Curso = cur
                     };
+
+                    if (esc.Evaluaciones == null)
+                    {
+                        esc.Evaluaciones = listaEvaluaciones.ToList();
+                    }
+                    else
+                    {
+                        esc.Evaluaciones.AddRange(listaEvaluaciones);
+
+                    }
+
+                }
+            }
+
+            foreach (var eval in esc.Evaluaciones)
+            {
+                contador++;
+                Console.WriteLine($"{contador} || " +
+                    $"{eval.Alumno.UniqueID.Substring(0,10)} " +
+                    $"{eval.Asignatura.Nombre} " +
+                    $"{eval.Nota} " +
+                    $"{eval.Curso.Nombre} ");
             }
         }
 
