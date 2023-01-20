@@ -37,6 +37,10 @@ namespace Etapa1.App
             CargarAlumnos(esc.Cursos);
             CargaEvaluaciones(esc);
 
+            //Extras
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>");
+            MostrarAlumnosReadO(DevolverAlumnosLectura());
+
         }
         #region CARGA DE DATOS
         private void CargaAsignatuas(List<Cursos> cursos)
@@ -135,6 +139,7 @@ namespace Etapa1.App
             }
         }
 
+
         public void CargarCursos(Escuela esc)
         {
             // El objeto recibe una nueva lista de curso creada en su definicion
@@ -182,7 +187,24 @@ namespace Etapa1.App
 
             }
         }
+
+        public IReadOnlyList<Alumnos> DevolverAlumnosLectura()
+        {
+            var listaAlumnos = new List<Alumnos>();
+            listaAlumnos = Escuela.Cursos[0].Alumnos;
+            return listaAlumnos.AsReadOnly();
+        }
+
+        public void MostrarAlumnosReadO(IReadOnlyList<Alumnos> alumnos)
+        {
+            foreach (var alumno in alumnos)
+            {
+                Console.WriteLine($"ID: {alumno.UniqueID} " +
+                    $"Alumno: {alumno.Nombre} ");
+            }
+        }
         #endregion MOSTRAR DATOS
+
 
         /// <summary>
         /// FORMAS DE ELIMINAR ELEMENTOS DENTRO DE UNA COLECCION "LIST"

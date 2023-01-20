@@ -15,8 +15,8 @@ namespace Etapa1
 
             escuela.inicializar();
             escuela.imprimirEscuela();
-            escuela.imprimirCursosEscuela();
-            escuela.EliminarCurso();
+            //escuela.imprimirCursosEscuela();
+            //escuela.EliminarCurso();
 
             //var curso = new Cursos() { Nombre = "Curso 1"};
             //var asig = new Asignaturas() { Nombre = "Asignatura 1"};
