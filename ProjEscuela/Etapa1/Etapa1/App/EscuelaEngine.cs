@@ -205,7 +205,7 @@ namespace Etapa1.App
         }
         #endregion MOSTRAR DATOS
 
-
+        #region BAJAS
         /// <summary>
         /// FORMAS DE ELIMINAR ELEMENTOS DENTRO DE UNA COLECCION "LIST"
         /// </summary>
@@ -262,6 +262,34 @@ namespace Etapa1.App
         {
             Escuela.Cursos.RemoveAll((cur) => (nombreCur == cur.Nombre && cur.Jornada == TiposJornada.Tarde));
         }
+
+        #endregion BAJAS
+
+        #region OPERACIONES VARIAS
+
+        public void Diccionarios()
+        {
+            Dictionary<int, string> diccionario_1 = new Dictionary<int, string>();
+            diccionario_1.Add(25, "Belman");
+            diccionario_1.Add(06, "David");
+            diccionario_1.Add(07, "Poxtan");
+
+            Utilidades.DibujarTitulo("DICCIONARIOS");
+
+            //Recorrer un diccionario
+            foreach (var elemento in diccionario_1)
+            {
+                Console.WriteLine($"Clave: {elemento.Key}, Clave: {elemento.Value}");
+            }
+
+            //Cambiar el valor de un elemento
+            diccionario_1[25] = "Marcos Antonio";
+
+            Console.WriteLine($"OTRO: Valor {diccionario_1[25]}");
+
+        }
+
+        #endregion OPERACIONES VARIAS
 
     }
 }

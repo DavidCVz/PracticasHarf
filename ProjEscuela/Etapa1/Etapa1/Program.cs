@@ -24,6 +24,8 @@ namespace Etapa1
 
             //Console.WriteLine($"Curso: {curso.Nombre} ID: {curso.UniqueID}");
             //Console.WriteLine($"Curso: {asig.Nombre} ID: {asig.UniqueID}");
+
+            escuela.Diccionarios();
         }
 
     }
