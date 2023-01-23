@@ -9,10 +9,9 @@ using System.Xml;
 
 namespace Etapa1.App
 {
-    public class EscuelaEngine
+    public class EscuelaEngine 
     {
         public Escuela Escuela { get; set; }
-
         public EscuelaEngine() 
         {
             
@@ -25,10 +24,12 @@ namespace Etapa1.App
 
             // Asignacion de valores a los atributos del objeto
             esc.Pais = "Mexico";
-            esc.Ciudad = "Coatzacoalcos";
+            esc.Ciudad = "Minatitlan";
             esc.tiposEscuela = TiposEscuela.Primaria;
             esc.tiposJornada = TiposJornada.Noche;
+            esc.Direccion = "Blv, Institutos Tec No, 509";
 
+            esc.MostrarDireccion();
             // Carga de Entidades
             CargarCursos(esc);
             imprimirCursosEscuela();
@@ -36,8 +37,12 @@ namespace Etapa1.App
             CargarAlumnos(esc.Cursos);
             CargaEvaluaciones(esc);
 
-        }
+            //Extras
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>");
+            MostrarAlumnosReadO(DevolverAlumnosLectura());
 
+        }
+        #region CARGA DE DATOS
         private void CargaAsignatuas(List<Cursos> cursos)
         {
             var listaAsignaturas = new List<Asignaturas>()
@@ -86,7 +91,6 @@ namespace Etapa1.App
                         esc.Evaluaciones.AddRange(listaEvaluaciones);
 
                     }
-
                 }
             }
 
@@ -135,6 +139,7 @@ namespace Etapa1.App
             }
         }
 
+
         public void CargarCursos(Escuela esc)
         {
             // El objeto recibe una nueva lista de curso creada en su definicion
@@ -149,19 +154,9 @@ namespace Etapa1.App
             // Se inicializa el atributo de la clase
             Escuela = esc;
         }
+        #endregion CARGA DE DATOS
 
-        public void EliminarCurso()
-        {
-            Console.WriteLine("Ingrese el Nombre del curso");
-            //string idCurso = Console.ReadLine();
-            string nombreCurso = Console.ReadLine();
-            //EliminarCurso(idCurso, esc.Cursos);
-            //ElimiarCursoDelegate(idCurso, esc);
-            EliminarCursoLambda(nombreCurso);
-            imprimirCursosEscuela();
-        }
-
-
+        #region MOSTRAR DATOS
         public void imprimirCursosEscuela()
         {
             // Se imprimen los cursos de UNA escuela
@@ -193,6 +188,24 @@ namespace Etapa1.App
             }
         }
 
+        public IReadOnlyList<Alumnos> DevolverAlumnosLectura()
+        {
+            var listaAlumnos = new List<Alumnos>();
+            listaAlumnos = Escuela.Cursos[0].Alumnos;
+            return listaAlumnos.AsReadOnly();
+        }
+
+        public void MostrarAlumnosReadO(IReadOnlyList<Alumnos> alumnos)
+        {
+            foreach (var alumno in alumnos)
+            {
+                Console.WriteLine($"ID: {alumno.UniqueID} " +
+                    $"Alumno: {alumno.Nombre} ");
+            }
+        }
+        #endregion MOSTRAR DATOS
+
+        #region BAJAS
         /// <summary>
         /// FORMAS DE ELIMINAR ELEMENTOS DENTRO DE UNA COLECCION "LIST"
         /// </summary>
@@ -201,6 +214,16 @@ namespace Etapa1.App
         /// 
 
         // CICLOS
+        public void EliminarCurso()
+        {
+            Console.WriteLine("Ingrese el Nombre del curso");
+            //string idCurso = Console.ReadLine();
+            string nombreCurso = Console.ReadLine();
+            //EliminarCurso(idCurso, esc.Cursos);
+            //ElimiarCursoDelegate(idCurso, esc);
+            EliminarCursoLambda(nombreCurso);
+            imprimirCursosEscuela();
+        }
         private void EliminarCurso(string idCurso, List<Cursos> cursos)
         {
             //Recorrremos la lista de cursos en la escuela
@@ -239,5 +262,34 @@ namespace Etapa1.App
         {
             Escuela.Cursos.RemoveAll((cur) => (nombreCur == cur.Nombre && cur.Jornada == TiposJornada.Tarde));
         }
+
+        #endregion BAJAS
+
+        #region OPERACIONES VARIAS
+
+        public void Diccionarios()
+        {
+            Dictionary<int, string> diccionario_1 = new Dictionary<int, string>();
+            diccionario_1.Add(25, "Belman");
+            diccionario_1.Add(06, "David");
+            diccionario_1.Add(07, "Poxtan");
+
+            Utilidades.DibujarTitulo("DICCIONARIOS");
+
+            //Recorrer un diccionario
+            foreach (var elemento in diccionario_1)
+            {
+                Console.WriteLine($"Clave: {elemento.Key}, Clave: {elemento.Value}");
+            }
+
+            //Cambiar el valor de un elemento
+            diccionario_1[25] = "Marcos Antonio";
+
+            Console.WriteLine($"OTRO: Valor {diccionario_1[25]}");
+
+        }
+
+        #endregion OPERACIONES VARIAS
+
     }
 }

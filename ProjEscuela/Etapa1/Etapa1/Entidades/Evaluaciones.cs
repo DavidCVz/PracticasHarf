@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Etapa1.Entidades
 {
-    public class Evaluaciones
+    public class Evaluaciones : ObjetoEscuelaBase
     {
-        public string UniqueID { get; set; }
-        public string Nombre { get; set; }
         public Alumnos Alumno { get; set; }
         public Asignaturas Asignatura { get; set; }
         public float Nota { get; set; }

@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Etapa1.Entidades
 {
-    public class Alumnos : ObjetoEscuelaBase
+    public interface IDireccion
     {
-       
+        string Direccion { get; set; }
+        void MostrarDireccion();
     }
 }
