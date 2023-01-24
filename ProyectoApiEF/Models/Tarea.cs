@@ -6,14 +6,14 @@ namespace ProyectoApiEF.Models
 {
     public class Tarea
     {
-        [Key] // Indica una clave primaria
+        //[Key] // Indica una clave primaria
         public Guid TareaId { get; set; }
 
-        [ForeignKey("CategoriaId")] // Indica una clave foranea
+        //[ForeignKey("CategoriaId")] // Indica una clave foranea
         public Guid CategoriaId { get; set; }
 
-        [Required] // Indica la propiedad NOT NULL en base de datos
-        [MaxLength(200)] // Indica una restriccion en la base de datos
+        //[Required] // Indica la propiedad NOT NULL en base de datos
+        //[MaxLength(200)] // Indica una restriccion en la base de datos
         public string Titulo { get; set;}
         public Guid Descripcion { get; set; }
         public Prioridad PrioridadTarea { get; set;}
