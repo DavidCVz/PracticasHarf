@@ -20,7 +20,7 @@ namespace ProyectoApiEF.Models
         public DateTime FechaCreacion { get; set; }
         public virtual Categoria Categoria { get; set; }
 
-        [NotMapped] //Para indicar que un atributo no se creara en la base de datos
+        //[NotMapped] //Para indicar que un atributo no se creara en la base de datos
         public string Resumen { get; set; }
     }
 
