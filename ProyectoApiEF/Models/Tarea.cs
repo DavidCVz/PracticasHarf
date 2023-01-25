@@ -15,7 +15,7 @@ namespace ProyectoApiEF.Models
         //[Required] // Indica la propiedad NOT NULL en base de datos
         //[MaxLength(200)] // Indica una restriccion en la base de datos
         public string Titulo { get; set;}
-        public Guid Descripcion { get; set; }
+        public string Descripcion { get; set; }
         public Prioridad PrioridadTarea { get; set;}
         public DateTime FechaCreacion { get; set; }
         public virtual Categoria Categoria { get; set; }
