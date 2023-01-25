@@ -14,6 +14,8 @@ public class Categoria
 
     //[Required] // Indica la propiedad NOT NULL en base de datos
     public string Descripcion { get;set; }
+
+    public int Peso { get;set; }
     public virtual ICollection<Tarea> Tareas { get; set; }
 
 }
