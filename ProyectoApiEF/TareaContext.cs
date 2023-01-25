@@ -29,6 +29,12 @@ namespace ProyectoApiEF
                 Nombre = "Actividades personales",
                 Peso = 50,
             });
+            categoriaInit.Add(new Categoria
+            {
+                CategoriaId = Guid.Parse("a91aee3b-2de8-4020-a99c-682aea2515d7"),
+                Nombre = "Actividades laborales",
+                Peso = 100,
+            });
 
 
             //Seeds de Tareas
@@ -48,6 +54,14 @@ namespace ProyectoApiEF
                 CategoriaId = Guid.Parse("e2a2a013-09ce-4446-bfc1-3aacab502702"),
                 PrioridadTarea = Prioridad.Bajo,
                 Titulo = "Terminar de ver serie The Last Of Us",
+                FechaCreacion = DateTime.Now,
+            });
+            tareasInit.Add(new Tarea
+            {
+                TareaId = Guid.Parse("5af3b1d4-5fc1-4445-87f3-2dbe112d0286"),
+                CategoriaId = Guid.Parse("a91aee3b-2de8-4020-a99c-682aea2515d7"),
+                PrioridadTarea = Prioridad.Alta,
+                Titulo = "Realizar examen de certificacion",
                 FechaCreacion = DateTime.Now,
             });
             #endregion SEEDS
