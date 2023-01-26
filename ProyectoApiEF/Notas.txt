@@ -1,0 +1,33 @@
+1. Comando para instalar la herramienta para las migracioness:
+https://learn.microsoft.com/en-us/ef/core/cli/dotnet
+```
+dotnet tool install --global dotnet-ef
+```
+
+2. Comando para instalar libreria para hacer uso de las migraciones
+https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design
+```
+dotnet ef dotnet add package Microsoft.EntityFrameworkCore.Design --version 7.0.2
+Nota: depende de la version del proyecto y demas
+```
+
+
+3. Comando para ver si esta instalado EF
+```
+dotnet ef
+```
+
+
+4. Crear una nueva migracion (Init Database)
+*  Se hace una primera migracion 
+*  A partir de la primera migracion, se pondra un nombre descriptivo que haga referencia a cada cambio que se haga dentro del codigo/esquema en la configuracion de EF
+```
+dotnet ef migrations add InitialCreate
+```
+* Posteriormente creara la carpeta Migrations
+
+
+5.  Por cada vez que se cree una migracion (sin contar InitialCreate) se debe de ejecutar el comando para llevar los cambios nuevos a la BD 
+```
+dotnet ef database update
+```
