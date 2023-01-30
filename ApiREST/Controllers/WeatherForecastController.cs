@@ -44,9 +44,9 @@ public class WeatherForecastController : ControllerBase
     }
 
     // Verbo GET
-    [HttpGet(Name = "GetWeatherForecast")]
-    [Route("Get/WeatherForecast")] // Define una ruta de manera explicita 
-    [Route("[action]")] /* [action] hace referencia al nombre del metodo "GetW" automaticamente, 
+    [HttpGet]
+    //[Route("Get/WeatherForecast")] // Define una ruta de manera explicita 
+    /*[Route("[action]")] /* [action] hace referencia al nombre del metodo "GetW" automaticamente, 
                             sin importar si el nombre del metodo cambia */
     public IEnumerable<WeatherForecast> GetW()
     {

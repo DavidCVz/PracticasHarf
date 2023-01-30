@@ -13,13 +13,20 @@ public class HelloWorldController : ControllerBase
 {
     IHelloWorldService helloWorldService; // objeto que hace referencia al servicio
 
+    private readonly ILogger<HelloWorldController> _logger;
+
+
     // Se recibe la instancia del servicio en la peticion
-    public HelloWorldController(IHelloWorldService HelloWorld)
+    public HelloWorldController(IHelloWorldService HelloWorld, ILogger<HelloWorldController> logger)
     {
-        helloWorldService = HelloWorld;
+        _logger = logger; //Recibe la instancia del logger
+
+        helloWorldService = HelloWorld; // Inicializa la dependencia
     }
 
+    [HttpGet]
     public IActionResult Get(){
+        _logger.LogInformation("Se ha retornado el mensaje de la dependencia");
         return Ok(helloWorldService.GetHelloWorld());
     }
 }
