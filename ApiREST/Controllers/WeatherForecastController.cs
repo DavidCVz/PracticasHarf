@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiREST.Controllers;
 
 [ApiController]
-[Route("api/[controller]")] // Define la ruta en la barra de direcciones
+[Route("api/[controller]")] /* define la ruta en la barra de direcciones de manera 
+                                implicita en base al nombre del controlador*/
 public class WeatherForecastController : ControllerBase
 {
     // Arreglo que contiene
@@ -23,7 +24,11 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
 
         // Cada que se realice una peticion, se ejecuta todo el cuerpo del constructor
-        Console.WriteLine("Peticion");
+        Console.WriteLine("Inicio de ciclo for");
+        for (int i = 0; i < 10000; i++)
+        {
+            Console.WriteLine(i);
+        }
 
         /* Si la lista no contiene datos, entonces crea una coleccion Enumerable 
             de datos aleatoreos usando la sentencia .Select, y transformandola en List*/
