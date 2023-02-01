@@ -1,3 +1,4 @@
+using ApiREST.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +10,8 @@ builder.Services.AddSwaggerGen();
 
 // La inyeccion de dependencias siempre va antes de la construccion de la API
 builder.Services.AddScoped<IHelloWorldService, HelloWorldService>(); // Se creara una instancia de la dependencia a nivel de controlador/clase
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ITareaService, TareaService>();
 // builder.Services.AddSingleton<>; // Se crea una unica instancia a nivel de API
 builder.Services.AddSingleton<IHelloWorldService>(p => new HelloWorldService());
 
