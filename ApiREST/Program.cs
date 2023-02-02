@@ -13,7 +13,7 @@ builder.Services.AddScoped<IHelloWorldService, HelloWorldService>(); // Se crear
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<ITareaService, TareaService>();
 // builder.Services.AddSingleton<>; // Se crea una unica instancia a nivel de API
-builder.Services.AddSingleton<IHelloWorldService>(p => new HelloWorldService());
+// builder.Services.AddSingleton<IHelloWorldService>(p => new HelloWorldService());
 
 var app = builder.Build();
 
