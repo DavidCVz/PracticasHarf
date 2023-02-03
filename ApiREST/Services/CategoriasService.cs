@@ -33,7 +33,10 @@ public class CategoriaService : ICategoriaService
             categoriaActual.Nombre = categoria.Nombre;
             categoriaActual.Descripcion = categoria.Descripcion;
             categoriaActual.Peso = categoria.Peso;
-
+/*          categoriaActual.Nombre = categoria.Nombre;
+            categoria.Descripcion = categoria.Descripcion;
+            categoria.Peso = categoria.Peso; */
+            context.Update(categoriaActual);
             await context.SaveChangesAsync(); // Guarda los datos modificados
         }
     }
@@ -44,7 +47,7 @@ public class CategoriaService : ICategoriaService
 
         if (categoriaActual != null)
         {
-            context.Categorias.Remove(categoriaActual);
+            context.Remove(categoriaActual);
 
             await context.SaveChangesAsync();
         }

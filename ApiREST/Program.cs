@@ -1,4 +1,6 @@
 using ApiREST.Services;
+using ApiREST;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,7 +10,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// La inyeccion de dependencias siempre va antes de la construccion de la API
+// CONEXION A BD
+builder.Services.AddSqlServer<TareaContext>(builder.Configuration.GetConnectionString("cnTareasBD"));
+
+// La INYECCION DE DEPENDENCIAS siempre va antes de la construccion de la API
 builder.Services.AddScoped<IHelloWorldService, HelloWorldService>(); // Se creara una instancia de la dependencia a nivel de controlador/clase
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<ITareaService, TareaService>();
