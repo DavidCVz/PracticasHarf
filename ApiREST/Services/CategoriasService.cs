@@ -18,13 +18,13 @@ public class CategoriaService : ICategoriaService
     }
 
     // Guarda una categoria entrante
-    public async Task Save(Categoria categoria)
+    public void Save(Categoria categoria)
     {
         context.Add(categoria);
-        await context.SaveChangesAsync();
+        context.SaveChanges();
     }
 
-    public async Task Update(Guid id, Categoria categoria)
+    public void Update(Guid id, Categoria categoria)
     {
         var categoriaActual = context.Categorias.Find(id);
 
@@ -37,11 +37,11 @@ public class CategoriaService : ICategoriaService
             categoria.Descripcion = categoria.Descripcion;
             categoria.Peso = categoria.Peso; */
             context.Update(categoriaActual);
-            await context.SaveChangesAsync(); // Guarda los datos modificados
+            context.SaveChanges(); // Guarda los datos modificados
         }
     }
 
-    public async Task Delete(Guid id)
+    public void Delete(Guid id)
     {
         var categoriaActual = context.Categorias.Find(id);
 
@@ -49,7 +49,7 @@ public class CategoriaService : ICategoriaService
         {
             context.Remove(categoriaActual);
 
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }
@@ -57,7 +57,7 @@ public class CategoriaService : ICategoriaService
 public interface ICategoriaService
 {
     IEnumerable<Categoria> Get();
-    Task Save(Categoria categoria);
-    Task Update(Guid id, Categoria categoria);
-    Task Delete(Guid id);
+    void Save(Categoria categoria);
+    void Update(Guid id, Categoria categoria);
+    void Delete(Guid id);
 }

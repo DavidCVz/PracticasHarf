@@ -17,8 +17,7 @@ public class TareaController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        tareaService.Get();
-        return Ok();
+        return Ok(tareaService.Get());
     }
 
     [HttpPost]

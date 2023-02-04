@@ -17,14 +17,14 @@ public class TareaService : ITareaService
     }
 
     // CREATE
-    public async Task Save(Tarea tarea)
+    public void Save(Tarea tarea)
     {
         context.Add(tarea);
-        await context.SaveChangesAsync();
+        context.SaveChanges();
     }
 
     // UPDATE
-    public async Task Update (Guid id, Tarea tarea)
+    public void Update (Guid id, Tarea tarea)
     {
         var tareaActual = context.Tareas.Find(id);
 
@@ -34,19 +34,19 @@ public class TareaService : ITareaService
             tareaActual.Descripcion = tarea.Descripcion;
             tareaActual.PrioridadTarea = tarea.PrioridadTarea;
 
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 
     // DELETE
-    public async Task Delete(Guid id)
+    public void Delete(Guid id)
     {
         var tareaActual = context.Tareas.Find(id);
 
         if (tareaActual != null)
         {
             context.Tareas.Remove(tareaActual);
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
     }
 }
@@ -54,7 +54,7 @@ public class TareaService : ITareaService
 public interface ITareaService
 {
     IEnumerable<Tarea> Get();
-    Task Save(Tarea tarea);
-    Task Update (Guid id, Tarea tarea);
-    Task Delete(Guid id);
+    void Save(Tarea tarea);
+    void Update (Guid id, Tarea tarea);
+    void Delete(Guid id);
 }
