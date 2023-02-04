@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProyectoApiEF.Models;
+using ApiREST.Models;
 
 // Configuracion del contexto usando Fluent API
-namespace ProyectoApiEF
+namespace ApiREST
 {
     public class TareaContext : DbContext
     {
-        //Estas dos colecciones se convertira en una Tabla en la BD
+        // La definicion de estas colecciones generara tablas en la BD
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Tarea> Tareas { get; set; }
-
 
         public TareaContext(DbContextOptions<TareaContext> options) : base(options) { }
 
