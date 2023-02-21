@@ -4,8 +4,8 @@
  *  2H = Two of Hearts
  *  2S = Two of Spades
 */
-(() => {
-    'use strict'
+const miModulo = (() => {
+    'use strict';
 
     let deck = [];
     const tipos = ['C', 'D', 'H', 'S'],
@@ -20,6 +20,11 @@
     
     const divCartasJugadores = document.querySelectorAll('.divCartas');
     const puntajeHTML = document.querySelectorAll('small');
+
+    //Inicializaciones
+    btnDetener.disabled = true;
+    btnPedir.disabled = true;  
+    
         
     // Se crea un un nuevo DECK
     const crearDeck = () =>{
@@ -44,6 +49,17 @@
         for (let i = 0; i < numJugadores; i++) {
             puntosJugadores.push(0);
         }
+
+        //Puntaje en vista
+        puntajeHTML.forEach(elem => elem.innerText = 0);
+    
+        //Divs de cartas
+        divCartasJugadores.forEach(elem => elem.innerHTML = '');
+        
+        //Botones
+        btnPedir.disabled = false;
+        btnDetener.disabled = false;
+        btnNuevoJuego.disabled = true;
     }
     
     crearDeck();
@@ -101,6 +117,7 @@
             }else{
                 alert('Gana la computadora');
             }
+            btnNuevoJuego.disabled = false;
         }, 10);
     }
     
@@ -132,19 +149,10 @@
     
     btnNuevoJuego.addEventListener('click', () => {
         //RESET
-        //Deck de cartas
         inicializarJuego();
-    
-        puntajeHTML[0].innerText = 0;
-        puntajeHTML[1].innerText = 0;
-    
-        //Divs de cartas
-        divCartasJugadores[0].innerHTML = '';
-        divCartasJugadores[1].innerHTML = '';
-        
-        //Botones
-        btnPedir.disabled = false;
-        btnDetener.disabled = false;
     })
 
+    return {
+        JuegoNuevo : inicializarJuego,
+    };
 })();
